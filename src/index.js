@@ -450,6 +450,7 @@ window.addEventListener("keydown", (EVT) => {
   let elem;
   let key;
   let textarea = document.getElementById("outcome");
+  const position = textarea.selectionStart;
   let lang = localStorage.getItem("lang");
   let btns;
   let stringTextFiel;
@@ -483,7 +484,11 @@ window.addEventListener("keydown", (EVT) => {
       textarea.value += "◄";
       break;
     case "Delete":
-      textarea.value = "";
+      // textarea.value = "";
+      textarea.focus();
+      let sel = textarea.value.slice(0, textarea.selectionStart)
+        + textarea.value.slice(position + 1);
+      textarea.value = sel;
       break;
     case "CapsLock":
       btns = document.getElementsByClassName("case");
@@ -548,6 +553,7 @@ window.addEventListener("click", (EVT) => {
   EVT.preventDefault();
   let textarea = document.getElementById("outcome");
   let btns = document.getElementsByClassName("case");
+  const position = textarea.selectionStart;
   if (
     EVT.target.className == "case down"
     || (EVT.target.className.indexOf("key") == 0
@@ -579,8 +585,11 @@ window.addEventListener("click", (EVT) => {
         textarea.value += "▲";
         break;
       case "DEL":
-        textarea.value = "";
-
+        // textarea.value = "";
+        textarea.focus();
+        let sel = textarea.value.slice(0, textarea.selectionStart)
+          + textarea.value.slice(position + 1);
+        textarea.value = sel;
         break;
       case "Shift":
       case "Ctrl":
