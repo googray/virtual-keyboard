@@ -1,2 +1,0 @@
-# virtual-keyboard
-RSSchool task
